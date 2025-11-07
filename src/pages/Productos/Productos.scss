@@ -1,0 +1,451 @@
+/* .productos {
+  padding: 5rem 0;
+  min-height: 100vh;
+
+  &__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  &__title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #111827;
+  }
+
+  &__intro {
+    font-size: 1.25rem;
+    color: #6b7280;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 4rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__card {
+    background: linear-gradient(to bottom right, white, #f9fafb);
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #f3f4f6;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      transform: translateY(-0.5rem);
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  &__icon {
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(to bottom right, #3b82f6, #8b5cf6);
+    border-radius: 1rem;
+    flex-shrink: 0;
+  }
+
+  &__badges {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+  }
+
+  &__badge {
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+
+    &--active {
+      background-color: #d1fae5;
+      color: #065f46;
+    }
+
+    &--dev {
+      background-color: #fef3c7;
+      color: #92400e;
+    }
+  }
+
+  &__version {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: #e0e7ff;
+    color: #3730a3;
+  }
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    color: #111827;
+  }
+
+  &__description {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  &__stats {
+    margin-bottom: 1.5rem;
+  }
+
+  &__stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+  }
+
+  &__stat-icon {
+    font-size: 1.25rem;
+  }
+
+  &__stat-value {
+    font-weight: 700;
+    color: #111827;
+  }
+
+  &__stat-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  &__features {
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  &__features-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.75rem;
+  }
+
+  &__features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      color: #6b7280;
+      padding: 0.25rem 0;
+      font-size: 0.9rem;
+    }
+  }
+
+  &__button {
+    color: #2563eb;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: gap 0.3s ease;
+    padding: 0;
+    margin-top: auto;
+
+    &:hover {
+      gap: 0.75rem;
+    }
+  }
+
+  &__cta {
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    padding: 3rem;
+    border-radius: 1.5rem;
+    text-align: center;
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  &__cta-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  &__cta-text {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__cta-button {
+    padding: 1rem 2.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+    color: #8b5cf6;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+} */
+
+.productos {
+  padding: 5rem 0;
+  min-height: 100vh;
+  background-color: #F5F5F5;
+
+  &__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  &__title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #0F0F0F;
+  }
+
+  &__intro {
+    font-size: 1.25rem;
+    color: #666666;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 4rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__card {
+    background: white;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      box-shadow: 0 20px 25px -5px rgba(139, 21, 56, 0.3);
+      transform: translateY(-0.5rem);
+      border-color: #8B1538;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  &__icon {
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(135deg, #6B0F29 0%, #8B1538 50%, #A91D3A 100%);
+    border-radius: 1rem;
+    flex-shrink: 0;
+  }
+
+  &__badges {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+  }
+
+  &__badge {
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+
+    &--active {
+      background-color: #D4EDDA;
+      color: #155724;
+    }
+
+    &--dev {
+      background-color: #FFF3CD;
+      color: #856404;
+    }
+  }
+
+  &__version {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: #FFE5E5;
+    color: #8B1538;
+  }
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    color: #0F0F0F;
+  }
+
+  &__description {
+    color: #666666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  &__stats {
+    margin-bottom: 1.5rem;
+  }
+
+  &__stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: #FFF5F5;
+    border-radius: 0.5rem;
+    border: 1px solid #FFE5E5;
+  }
+
+  &__stat-icon {
+    font-size: 1.25rem;
+  }
+
+  &__stat-value {
+    font-weight: 700;
+    color: #8B1538;
+  }
+
+  &__stat-label {
+    font-size: 0.875rem;
+    color: #666666;
+  }
+
+  &__features {
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  &__features-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 0.75rem;
+  }
+
+  &__features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      color: #666666;
+      padding: 0.25rem 0;
+      font-size: 0.9rem;
+    }
+  }
+
+  &__button {
+    color: #8B1538;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    margin-top: auto;
+
+    &:hover {
+      gap: 0.75rem;
+      color: #A91D3A;
+    }
+  }
+
+  &__cta {
+    background: linear-gradient(135deg, #0F0F0F 0%, #6B0F29 50%, #8B1538 100%);
+    padding: 3rem;
+    border-radius: 1.5rem;
+    text-align: center;
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(139, 21, 56, 0.3);
+  }
+
+  &__cta-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  &__cta-text {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__cta-button {
+    padding: 1rem 2.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+    color: #8B1538;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+}

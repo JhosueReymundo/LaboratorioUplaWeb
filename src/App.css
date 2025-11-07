@@ -1,0 +1,26 @@
+/* src/App.css */
+/* .app {
+  min-height: 100vh;
+  background-color: #f9fafb;
+}
+
+.main-content {
+  padding-top: 80px;
+  min-height: calc(100vh - 300px);
+} */
+
+.app {
+  min-height: 100vh;
+  background-color: #F5F5F5;
+}
+
+.main-content {
+  padding-top: 80px;
+  min-height: calc(100vh - 300px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

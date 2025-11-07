@@ -1,0 +1,360 @@
+/* .nosotros {
+  padding: 5rem 0;
+  min-height: 100vh;
+
+  &__container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  &__title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #111827;
+  }
+
+  &__intro {
+    font-size: 1.25rem;
+    color: #6b7280;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+
+  &__subtitle {
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #111827;
+  }
+
+  &__text {
+    font-size: 1.125rem;
+    color: #374151;
+    line-height: 1.8;
+  }
+
+  &__mission {
+    background: linear-gradient(to bottom right, #dbeafe, #ede9fe);
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &__vision {
+    background: linear-gradient(to bottom right, #ede9fe, #dbeafe);
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &__values {
+    margin-bottom: 3rem;
+  }
+
+  &__values-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__value-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-0.5rem);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__value-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  &__value-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    color: #111827;
+  }
+
+  &__value-text {
+    font-size: 0.95rem;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  &__team {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &__team-intro {
+    font-size: 1.125rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  &__team-grid {
+    display: grid;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__member {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #f9fafb;
+    }
+  }
+
+  &__member-avatar {
+    width: 8rem;
+    height: 8rem;
+    background: linear-gradient(to bottom right, #60a5fa, #a78bfa);
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &__member-initial {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  &__member-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #111827;
+    margin-bottom: 0.25rem;
+  }
+
+  &__member-role {
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  &__member-email {
+    font-size: 0.875rem;
+    color: #2563eb;
+  }
+} */
+
+.nosotros {
+  padding: 5rem 0;
+  min-height: 100vh;
+  background-color: #F5F5F5;
+
+  &__container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  &__title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #0F0F0F;
+  }
+
+  &__intro {
+    font-size: 1.25rem;
+    color: #666666;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+
+  &__subtitle {
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #0F0F0F;
+  }
+
+  &__text {
+    font-size: 1.125rem;
+    color: #333333;
+    line-height: 1.8;
+  }
+
+  &__mission {
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFE5E5 100%);
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #8B1538;
+  }
+
+  &__vision {
+    background: linear-gradient(135deg, #FFE5E5 0%, #FFFFFF 100%);
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #A91D3A;
+  }
+
+  &__values {
+    margin-bottom: 3rem;
+  }
+
+  &__values-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__value-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+
+    &:hover {
+      transform: translateY(-0.5rem);
+      box-shadow: 0 10px 15px -3px rgba(139, 21, 56, 0.3);
+      border-color: #8B1538;
+    }
+  }
+
+  &__value-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  &__value-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    color: #0F0F0F;
+  }
+
+  &__value-text {
+    font-size: 0.95rem;
+    color: #666666;
+    line-height: 1.6;
+  }
+
+  &__team {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &__team-intro {
+    font-size: 1.125rem;
+    color: #666666;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  &__team-grid {
+    display: grid;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__member {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #FFF5F5;
+    }
+  }
+
+  &__member-avatar {
+    width: 8rem;
+    height: 8rem;
+    background: linear-gradient(135deg, #6B0F29 0%, #8B1538 50%, #A91D3A 100%);
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(139, 21, 56, 0.4);
+  }
+
+  &__member-initial {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  &__member-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #0F0F0F;
+    margin-bottom: 0.25rem;
+  }
+
+  &__member-role {
+    color: #666666;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  &__member-email {
+    font-size: 0.875rem;
+    color: #8B1538;
+  }
+}

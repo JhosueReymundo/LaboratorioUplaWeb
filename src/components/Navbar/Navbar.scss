@@ -1,0 +1,239 @@
+/* src/components/Navbar/Navbar.scss */
+ /* .navbar {
+  background-color: #333;
+  padding: 10px;
+
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+  }
+
+  li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  li a:hover {
+    text-decoration: underline;
+  }
+} 
+ */
+/* .navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 50;
+  transition: all 0.3s ease;
+  background-color: transparent;
+
+  &--scrolled {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+  }
+
+  &__logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #2563eb, #9333ea);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  &__desktop {
+    display: none;
+    gap: 0.25rem;
+
+    @media (min-width: 1024px) {
+      display: flex;
+    }
+  }
+
+  &__link {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: #374151;
+
+    &:hover {
+      background-color: #f3f4f6;
+    }
+
+    &--active {
+      background-color: #2563eb;
+      color: white;
+
+      &:hover {
+        background-color: #1d4ed8;
+      }
+    }
+  }
+
+  &--scrolled &__link {
+    color: #374151;
+  }
+
+  &__mobile-toggle {
+    display: block;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &__mobile {
+    background-color: white;
+    border-top: 1px solid #e5e7eb;
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &__mobile-link {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    text-align: left;
+    text-decoration: none;
+    color: #374151;
+    border-bottom: 1px solid #e5e7eb;
+
+    &:hover {
+      background-color: #f9fafb;
+    }
+  }
+} */
+
+ .navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 50;
+  transition: all 0.3s ease;
+  background-color: rgba(15, 15, 15, 0.95);
+  backdrop-filter: blur(10px);
+
+  &--scrolled {
+    background-color: rgba(15, 15, 15, 0.98);
+    box-shadow: 0 4px 12px rgba(139, 21, 56, 0.3);
+    border-bottom: 2px solid #8B1538;
+  }
+
+  &__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+  }
+
+  &__logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #f7d1d1, #ac1b47);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      filter: brightness(1.2);
+    }
+  }
+
+  &__desktop {
+    display: none;
+    gap: 0.25rem;
+
+    @media (min-width: 1024px) {
+      display: flex;
+    }
+  }
+
+  &__link {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: #FFFFFF;
+
+    &:hover {
+      background-color: rgba(139, 21, 56, 0.2);
+      color: #A91D3A;
+    }
+
+    &--active {
+      background-color: #8B1538;
+      color: white;
+
+      &:hover {
+        background-color: #A91D3A;
+      }
+    }
+  }
+
+  &__mobile-toggle {
+    display: block;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #FFFFFF;
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+
+    &:hover {
+      color: #A91D3A;
+    }
+  }
+
+  &__mobile {
+    background-color: #1F1F1F;
+    border-top: 2px solid #8B1538;
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &__mobile-link {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    text-align: left;
+    text-decoration: none;
+    color: #FFFFFF;
+    border-bottom: 1px solid #2D2D2D;
+
+    &:hover {
+      background-color: rgba(139, 21, 56, 0.2);
+      color: #A91D3A;
+    }
+  }
+} 
