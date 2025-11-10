@@ -5,20 +5,18 @@ import './Productos.scss';
 const Productos: React.FC = () => {
   const productos = [
     {
-      nombre: 'Sistema de Gestión Académica',
-      descripcion: 'Plataforma integral para la administración de procesos académicos, registro de notas, control de asistencia y gestión de horarios.',
+      nombre: 'Sistema de Gestión de Hoarios de Laboratortio',
+      descripcion: 'Sistema de gestion de horarios de laboratorio de computo de la facultad de Ingeniería',
       caracteristicas: [
-        'Gestión de notas y calificaciones',
-        'Control de asistencia automatizado',
-        'Generación de reportes académicos',
-        'Panel administrativo completo',
-        'Módulo de registro de estudiantes'
+        'Gestión horarios',
+        'Generación de reportes del uso de laboratorio',
+        'Panel administrativo completo'
       ],
       estado: 'Activo',
       version: 'v3.2.1',
-      usuarios: '5,000+'
+      usuarios: ''
     },
-    {
+    /* {
       nombre: 'Portal Estudiantil',
       descripcion: 'Acceso centralizado a todos los servicios universitarios para estudiantes, incluyendo matrícula, consulta de notas y trámites académicos.',
       caracteristicas: [
@@ -30,64 +28,8 @@ const Productos: React.FC = () => {
       ],
       estado: 'Activo',
       version: 'v2.8.0',
-      usuarios: '8,500+'
-    },
-    {
-      nombre: 'Sistema de Tickets',
-      descripcion: 'Plataforma de gestión eficiente para solicitudes de soporte técnico con seguimiento en tiempo real y sistema de prioridades.',
-      caracteristicas: [
-        'Creación y gestión de tickets',
-        'Seguimiento en tiempo real',
-        'Sistema de prioridades inteligente',
-        'Historial completo de solicitudes',
-        'Notificaciones automáticas'
-      ],
-      estado: 'Activo',
-      version: 'v1.5.3',
-      usuarios: '1,200+'
-    },
-    {
-      nombre: 'App Móvil Universidad',
-      descripcion: 'Aplicación móvil multiplataforma que pone todos los servicios universitarios al alcance de tu dispositivo móvil.',
-      caracteristicas: [
-        'Notificaciones push en tiempo real',
-        'Horarios y cronogramas personalizados',
-        'Mapa interactivo del campus',
-        'Noticias y comunicados universitarios',
-        'Directorio de contactos'
-      ],
-      estado: 'En desarrollo',
-      version: 'Beta v0.9.2',
-      usuarios: '500+ (Beta)'
-    },
-    {
-      nombre: 'Sistema de Biblioteca Digital',
-      descripcion: 'Repositorio digital de recursos académicos con acceso remoto, búsqueda avanzada y gestión de préstamos virtuales.',
-      caracteristicas: [
-        'Catálogo digital completo',
-        'Préstamos virtuales de libros',
-        'Búsqueda avanzada por categorías',
-        'Reservas de material en línea',
-        'Acceso remoto 24/7'
-      ],
-      estado: 'Activo',
-      version: 'v2.1.0',
-      usuarios: '3,200+'
-    },
-    {
-      nombre: 'Plataforma de Evaluaciones',
-      descripcion: 'Sistema robusto para crear, administrar y calificar exámenes en línea de forma segura con análisis estadístico avanzado.',
-      caracteristicas: [
-        'Exámenes en línea seguros',
-        'Banco de preguntas categorizado',
-        'Calificación automática',
-        'Análisis estadístico de resultados',
-        'Detección de plagio'
-      ],
-      estado: 'En desarrollo',
-      version: 'Alpha v0.5.1',
-      usuarios: '200+ (Piloto)'
-    }
+      usuarios: ''
+    } */
   ];
 
   return (
@@ -132,9 +74,9 @@ const Productos: React.FC = () => {
                 </ul>
               </div>
               
-              <button className="productos__button">
+              {/* <button className="productos__button">
                 Ver más detalles <ChevronRight size={20} />
-              </button>
+              </button> */}
             </div>
           ))}
         </div>

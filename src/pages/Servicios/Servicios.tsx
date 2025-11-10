@@ -62,8 +62,7 @@ const Servicios: React.FC = () => {
       detalles: [
         'Talleres de herramientas ofimáticas',
         'Capacitación en nuevas tecnologías',
-        'Sesiones personalizadas',
-        'Material de apoyo digital'
+        'Sesiones personalizadas'
       ]
     }
   ];
@@ -73,7 +72,7 @@ const Servicios: React.FC = () => {
       <div className="servicios__container">
         <h1 className="servicios__title">Nuestros Servicios</h1>
         <p className="servicios__intro">
-          Ofrecemos una amplia gama de servicios tecnológicos para garantizar 
+          Realizamos una amplia gama de trabajo tecnológicos para garantizar 
           el funcionamiento óptimo de la infraestructura TI universitaria.
         </p>
         
@@ -96,9 +95,9 @@ const Servicios: React.FC = () => {
                 </ul>
               </div>
               
-              <button className="servicios__button">
+              {/* <button className="servicios__button">
                 Solicitar servicio <ChevronRight size={20} />
-              </button>
+              </button> */}
             </div>
           ))}
         </div>

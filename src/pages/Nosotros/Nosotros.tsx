@@ -3,12 +3,12 @@ import './Nosotros.scss';
 
 const Nosotros: React.FC = () => {
   const equipo = [
-    { nombre: 'Juan Pérez', cargo: 'Director TI', email: 'jperez@universidad.edu' },
-    { nombre: 'María García', cargo: 'Especialista en Redes', email: 'mgarcia@universidad.edu' },
+    { nombre: '', cargo: '', email: '' },
+    /* { nombre: 'María García', cargo: 'Especialista en Redes', email: 'mgarcia@universidad.edu' },
     { nombre: 'Carlos López', cargo: 'Desarrollador Senior', email: 'clopez@universidad.edu' },
     { nombre: 'Ana Martínez', cargo: 'Soporte Técnico', email: 'amartinez@universidad.edu' },
     { nombre: 'Luis Torres', cargo: 'Administrador de Sistemas', email: 'ltorres@universidad.edu' },
-    { nombre: 'Sofia Ramírez', cargo: 'Analista de Seguridad', email: 'sramirez@universidad.edu' }
+    { nombre: 'Sofia Ramírez', cargo: 'Analista de Seguridad', email: 'sramirez@universidad.edu' } */
   ];
 
   return (

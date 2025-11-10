@@ -55,18 +55,18 @@ const Home: React.FC = () => {
 
       <section className="home__stats">
         <div className="home__stats-container">
-          <div className="home__stat">
+         {/*  <div className="home__stat">
             <div className="home__stat-number">14 horas</div>
             <div className="home__stat-label">Soporte disponible</div>
-          </div>
+          </div> */}
           <div className="home__stat">
             <div className="home__stat-number">9</div>
-            <div className="home__stat-label">Laboratorios atendidos</div>
+            <div className="home__stat-label">Laboratorios</div>
           </div>
-          <div className="home__stat">
+         {/*  <div className="home__stat">
             <div className="home__stat-number">1000+</div>
             <div className="home__stat-label">Tickets resueltos</div>
-          </div>
+          </div> */}
         </div>
       </section>
     </div>
