@@ -1,163 +1,328 @@
-import React, { useState } from 'react';
-import { ChevronRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Calendar, User, Eye, Building2, GraduationCap, ChevronRight, Clock, FileText, Download } from 'lucide-react';
+/* import { comunicadosService, Comunicado } from '../services/comunicadosService'; */
 import './Comunicados.scss';
+import { comunicadosService, type Comunicado } from './services/comunicadosService';
 
 const Comunicados: React.FC = () => {
+  const [comunicados, setComunicados] = useState<Comunicado[]>([]);
+  const [loading, setLoading] = useState(true);
   const [filtroActivo, setFiltroActivo] = useState<string>('Todos');
+  const [comunicadoSeleccionado, setComunicadoSeleccionado] = useState<Comunicado | null>(null);
 
-  const comunicados = [
-    {
-      titulo: 'Mantenimiento Programado de Servidores',
-      fecha: '05 Nov 2025',
-      tipo: 'Importante',
-      contenido: 'Se realizará mantenimiento preventivo a los servidores principales el próximo sábado de 2:00 AM a 6:00 AM. Durante este periodo algunos servicios podrían no estar disponibles. Se recomienda guardar todo el trabajo antes de la hora indicada.',
-      categoria: 'Mantenimiento',
-      autor: 'Equipo TI'
-    },
-    {
-      titulo: 'Nueva Actualización de Sistema Académico',
-      fecha: '03 Nov 2025',
-      tipo: 'Información',
-      contenido: 'El sistema de gestión académica ha sido actualizado con nuevas funcionalidades incluyendo exportación de reportes en múltiples formatos, mejoras en la interfaz de usuario y mayor velocidad de procesamiento.',
-      categoria: 'Actualización',
-      autor: 'Desarrollo'
-    },
-    {
-      titulo: 'Horario Extendido - Período de Finales',
-      fecha: '01 Nov 2025',
-      tipo: 'Aviso',
-      contenido: 'Durante el período de exámenes finales (del 10 al 20 de noviembre), los laboratorios extenderán su horario de atención hasta las 10:00 PM de lunes a viernes. Los sábados permanecerán con horario normal.',
-      categoria: 'Horarios',
-      autor: 'Administración'
-    },
-    {
-      titulo: 'Nuevo Portal de Soporte Técnico',
-      fecha: '28 Oct 2025',
-      tipo: 'Información',
-      contenido: 'Estamos orgullosos de anunciar el lanzamiento del nuevo portal de tickets para soporte técnico. Ahora podrás dar seguimiento en tiempo real a tus solicitudes, recibir notificaciones y consultar el historial completo.',
-      categoria: 'Novedad',
-      autor: 'Equipo TI'
-    },
-    {
-      titulo: 'Actualización de Políticas de Seguridad',
-      fecha: '25 Oct 2025',
-      tipo: 'Importante',
-      contenido: 'Se han actualizado las políticas de seguridad informática de acuerdo a las nuevas normativas internacionales. Todos los usuarios deben actualizar sus contraseñas en los próximos 15 días siguiendo los nuevos criterios de complejidad.',
-      categoria: 'Seguridad',
-      autor: 'Seguridad TI'
-    },
-    {
-      titulo: 'Taller: Introducción a las Nuevas Herramientas',
-      fecha: '22 Oct 2025',
-      tipo: 'Evento',
-      contenido: 'Se realizará un taller introductorio sobre las nuevas herramientas digitales implementadas. El taller será el viernes 25 de octubre a las 3:00 PM en el Lab 3. Inscripciones abiertas hasta el miércoles.',
-      categoria: 'Capacitación',
-      autor: 'Capacitación'
-    },
-    {
-      titulo: 'Mejoras en la Red WiFi del Campus',
-      fecha: '18 Oct 2025',
-      tipo: 'Información',
-      contenido: 'Se han instalado 15 nuevos puntos de acceso WiFi en áreas estratégicas del campus. Esto mejorará significativamente la cobertura y velocidad de conexión en bibliotecas, cafeterías y espacios comunes.',
-      categoria: 'Infraestructura',
-      autor: 'Redes'
-    },
-    {
-      titulo: 'Encuesta de Satisfacción - Servicios TI',
-      fecha: '15 Oct 2025',
-      tipo: 'Aviso',
-      contenido: 'Nos encantaría conocer tu opinión sobre nuestros servicios. Te invitamos a completar nuestra encuesta de satisfacción que te tomará solo 5 minutos. Tu feedback es muy importante para nosotros.',
-      categoria: 'General',
-      autor: 'Calidad'
+  useEffect(() => {
+    loadComunicados();
+  }, []);
+
+  const loadComunicados = async () => {
+    try {
+      setLoading(true);
+      const data = await comunicadosService.getPublicados();
+      setComunicados(data);
+    } catch (error) {
+      console.error('Error al cargar comunicados:', error);
+    } finally {
+      setLoading(false);
     }
-  ];
-
-  const categorias = ['Todos', 'Mantenimiento', 'Actualización', 'Seguridad', 'Novedad', 'Capacitación', 'General'];
-
-  const comunicadosFiltrados = filtroActivo === 'Todos' 
-    ? comunicados 
-    : comunicados.filter(c => c.categoria === filtroActivo);
-
-  const getTipoClass = (tipo: string) => {
-    const tipos: { [key: string]: string } = {
-      'Importante': 'importante',
-      'Información': 'info',
-      'Aviso': 'aviso',
-      'Evento': 'evento'
-    };
-    return tipos[tipo] || 'info';
   };
+
+  // Extraer filtros únicos
+  const getFiltros = () => {
+    const escuelas = new Set<string>();
+    const dependencias = new Set<string>();
+
+    comunicados.forEach(com => {
+      if (com.autor.escuela) escuelas.add(com.autor.escuela.nombreEscuela);
+      if (com.autor.dependencia) dependencias.add(com.autor.dependencia.nombreDependencia);
+    });
+
+    return {
+      escuelas: Array.from(escuelas),
+      dependencias: Array.from(dependencias),
+    };
+  };
+
+  const filtros = getFiltros();
+
+  // Filtrar comunicados
+  const comunicadosFiltrados = comunicados.filter(com => {
+    if (filtroActivo === 'Todos') return true;
+    
+    const esEscuela = com.autor.escuela?.nombreEscuela === filtroActivo;
+    const esDependencia = com.autor.dependencia?.nombreDependencia === filtroActivo;
+    
+    return esEscuela || esDependencia;
+  });
+
+  const handleVerMas = async (comunicado: Comunicado) => {
+    setComunicadoSeleccionado(comunicado);
+    await comunicadosService.incrementarVistas(comunicado.id);
+  };
+
+  const formatFecha = (fecha: string | null) => {
+    if (!fecha) return 'Sin fecha';
+    const date = new Date(fecha);
+    return date.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+  };
+
+  const getTiempoRelativo = (fecha: string | null) => {
+    if (!fecha) return 'Sin publicar';
+    
+    const now = new Date();
+    const fechaPub = new Date(fecha);
+    const diff = now.getTime() - fechaPub.getTime();
+    
+    const minutos = Math.floor(diff / 60000);
+    const horas = Math.floor(diff / 3600000);
+    const dias = Math.floor(diff / 86400000);
+    
+    if (minutos < 1) return 'Ahora';
+    if (minutos < 60) return `Hace ${minutos} min`;
+    if (horas < 24) return `Hace ${horas} ${horas === 1 ? 'hora' : 'horas'}`;
+    if (dias < 7) return `Hace ${dias} ${dias === 1 ? 'día' : 'días'}`;
+    
+    return formatFecha(fecha);
+  };
+
+  const getContenidoPreview = (contenido: string) => {
+    const maxLength = 180;
+    if (contenido.length <= maxLength) return contenido;
+    return contenido.substring(0, maxLength) + '...';
+  };
+
+  if (loading) {
+    return (
+      <div className="comunicados-loading">
+        <div className="spinner"></div>
+        <p>Cargando comunicados...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="comunicados">
       <div className="comunicados__container">
-        <h1 className="comunicados__title">Comunicados</h1>
-        <p className="comunicados__subtitle">
-          Mantente informado sobre las últimas novedades, actualizaciones y eventos del departamento TI
-        </p>
-
-        <div className="comunicados__filters">
-          <h3 className="comunicados__filters-title">Filtrar por categoría:</h3>
-          <div className="comunicados__filters-buttons">
-            {categorias.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setFiltroActivo(cat)}
-                className={`comunicados__filter-btn ${filtroActivo === cat ? 'comunicados__filter-btn--active' : ''}`}
-              >
-                {cat}
-              </button>
-            ))}
+        {/* Header */}
+        <div className="comunicados__header">
+          <div className="comunicados__header-content">
+            <h1 className="comunicados__title">Comunicados Oficiales</h1>
+            <p className="comunicados__subtitle">
+              Información importante de la Oficina de Infraestructura Tecnológica y Desarrollo de Software
+            </p>
+          </div>
+          <div className="comunicados__stats">
+            <div className="stat-card">
+              <FileText size={24} />
+              <div>
+                <span className="stat-number">{comunicados.length}</span>
+                <span className="stat-label">Publicaciones</span>
+              </div>
+            </div>
           </div>
         </div>
-        
+
+        {/* Filtros */}
+        <div className="comunicados__filters">
+          <h3 className="comunicados__filters-title">
+            <Building2 size={20} />
+            Filtrar por área:
+          </h3>
+          <div className="comunicados__filters-buttons">
+            <button
+              onClick={() => setFiltroActivo('Todos')}
+              className={`filter-btn ${filtroActivo === 'Todos' ? 'filter-btn--active' : ''}`}
+            >
+              Todos ({comunicados.length})
+            </button>
+            
+            {filtros.escuelas.length > 0 && (
+              <div className="filter-group">
+                <span className="filter-group-label">Escuelas Profesionales:</span>
+                {filtros.escuelas.map(escuela => (
+                  <button
+                    key={escuela}
+                    onClick={() => setFiltroActivo(escuela)}
+                    className={`filter-btn ${filtroActivo === escuela ? 'filter-btn--active' : ''}`}
+                  >
+                    <GraduationCap size={16} />
+                    {escuela}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {filtros.dependencias.length > 0 && (
+              <div className="filter-group">
+                <span className="filter-group-label">Dependencias:</span>
+                {filtros.dependencias.map(dep => (
+                  <button
+                    key={dep}
+                    onClick={() => setFiltroActivo(dep)}
+                    className={`filter-btn ${filtroActivo === dep ? 'filter-btn--active' : ''}`}
+                  >
+                    <Building2 size={16} />
+                    {dep}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Grid de Comunicados */}
         <div className="comunicados__grid">
-          {comunicadosFiltrados.map((comunicado, idx) => (
-            <div key={idx} className="comunicados__card">
-              <div className="comunicados__header">
-                <span className={`comunicados__tipo comunicados__tipo--${getTipoClass(comunicado.tipo)}`}>
-                  {comunicado.tipo}
-                </span>
-                <span className="comunicados__fecha">{comunicado.fecha}</span>
+          {comunicadosFiltrados.map((comunicado) => (
+            <article key={comunicado.id} className="comunicado-card">
+              {/* Imagen de portada */}
+              {comunicado.imagenPortada && (
+                <div className="comunicado-card__imagen">
+                  <img 
+                    src={comunicadosService.getImagenUrl(comunicado.imagenPortada) || ''} 
+                    alt={comunicado.titulo}
+                  />
+                </div>
+              )}
+
+              <div className="comunicado-card__content">
+                {/* Meta info */}
+                <div className="comunicado-card__meta">
+                  <span className="meta-item">
+                    <Clock size={14} />
+                    {getTiempoRelativo(comunicado.fechaPublicacion)}
+                  </span>
+                  <span className="meta-item">
+                    <Eye size={14} />
+                    {comunicado.vistas} vistas
+                  </span>
+                </div>
+
+                {/* Título */}
+                <h2 className="comunicado-card__titulo">{comunicado.titulo}</h2>
+
+                {/* Autor */}
+                <div className="comunicado-card__autor">
+                  <div className="autor-avatar">
+                    <User size={18} />
+                  </div>
+                  <div className="autor-info">
+                    <span className="autor-nombre">
+                      {comunicado.autor.nombre} {comunicado.autor.apellido}
+                    </span>
+                    <div className="autor-detalles">
+                      {comunicado.autor.escuela && (
+                        <span className="detalle">
+                          <GraduationCap size={12} />
+                          {comunicado.autor.escuela.nombreEscuela}
+                        </span>
+                      )}
+                      {comunicado.autor.dependencia && (
+                        <span className="detalle">
+                          <Building2 size={12} />
+                          {comunicado.autor.dependencia.nombreDependencia}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Contenido preview */}
+                <p className="comunicado-card__contenido">
+                  {getContenidoPreview(comunicado.contenido)}
+                </p>
+
+                {/* Archivos adjuntos */}
+                {comunicado.archivosAdjuntos && comunicado.archivosAdjuntos.length > 0 && (
+                  <div className="comunicado-card__archivos">
+                    <span className="archivos-label">
+                      <FileText size={14} />
+                      {comunicado.archivosAdjuntos.length} archivo(s) adjunto(s)
+                    </span>
+                  </div>
+                )}
+
+                {/* Footer */}
+                <div className="comunicado-card__footer">
+                  {comunicado.fechaPublicacion && (
+                    <span className="fecha-completa">
+                      <Calendar size={14} />
+                      Publicado: {formatFecha(comunicado.fechaPublicacion)}
+                    </span>
+                  )}
+                  <button 
+                    className="btn-ver-mas"
+                    onClick={() => handleVerMas(comunicado)}
+                  >
+                    Leer más
+                    <ChevronRight size={18} />
+                  </button>
+                </div>
               </div>
-              
-              <div className="comunicados__meta">
-                <span className="comunicados__categoria">{comunicado.categoria}</span>
-                <span className="comunicados__separator">•</span>
-                <span className="comunicados__autor">{comunicado.autor}</span>
-              </div>
-              
-              <h3 className="comunicados__titulo">{comunicado.titulo}</h3>
-              <p className="comunicados__contenido">{comunicado.contenido}</p>
-              
-              <button className="comunicados__button">
-                Leer más <ChevronRight size={20} />
-              </button>
-            </div>
+            </article>
           ))}
         </div>
 
+        {/* Empty state */}
         {comunicadosFiltrados.length === 0 && (
           <div className="comunicados__empty">
-            <p>No hay comunicados en esta categoría.</p>
+            <FileText size={64} />
+            <h3>No hay comunicados disponibles</h3>
+            <p>No se encontraron comunicados para este filtro.</p>
           </div>
         )}
+      </div>
 
-        <div className="comunicados__subscribe">
-          <h2 className="comunicados__subscribe-title">📬 Suscríbete a nuestras notificaciones</h2>
-          <p className="comunicados__subscribe-text">
-            Recibe los comunicados importantes directamente en tu correo electrónico
-          </p>
-          <div className="comunicados__subscribe-form">
-            <input 
-              type="email" 
-              placeholder="tu.correo@universidad.edu"
-              className="comunicados__subscribe-input"
-            />
-            <button className="comunicados__subscribe-button">Suscribirse</button>
+      {/* Modal de detalle (opcional - puedes implementarlo) */}
+      {comunicadoSeleccionado && (
+        <div className="comunicado-modal" onClick={() => setComunicadoSeleccionado(null)}>
+          <div className="comunicado-modal__content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setComunicadoSeleccionado(null)}>
+              ×
+            </button>
+            
+            {comunicadoSeleccionado.imagenPortada && (
+              <img 
+                src={comunicadosService.getImagenUrl(comunicadoSeleccionado.imagenPortada) || ''} 
+                alt={comunicadoSeleccionado.titulo}
+                className="modal-imagen"
+              />
+            )}
+
+            <h2>{comunicadoSeleccionado.titulo}</h2>
+            <div className="modal-meta">
+              <span>{comunicadoSeleccionado.autor.nombre} {comunicadoSeleccionado.autor.apellido}</span>
+              <span>•</span>
+              <span>{formatFecha(comunicadoSeleccionado.fechaPublicacion)}</span>
+              <span>•</span>
+              <span>{comunicadoSeleccionado.vistas} vistas</span>
+            </div>
+            
+            <div className="modal-contenido">
+              {comunicadoSeleccionado.contenido}
+            </div>
+
+            {comunicadoSeleccionado.archivosAdjuntos && comunicadoSeleccionado.archivosAdjuntos.length > 0 && (
+              <div className="modal-archivos">
+                <h3>Archivos adjuntos</h3>
+                {comunicadoSeleccionado.archivosAdjuntos.map((archivo, index) => (
+                  <a
+                    key={index}
+                    href={comunicadosService.getDownloadUrl(comunicadoSeleccionado.id, index)}
+                    download
+                    className="archivo-link"
+                  >
+                    <Download size={16} />
+                    Descargar archivo {index + 1}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

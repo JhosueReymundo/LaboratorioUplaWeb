@@ -7,13 +7,13 @@ const Footer: React.FC = () => {
       <div className="footer__container">
         <div className="footer__grid">
           <div className="footer__section">
-            <h3 className="footer__title">Laboratorio de Cómputo</h3>
+            <h3 className="footer__title">Oficina de Infraestructura Tecnológica y Desarrollo de Software</h3>
             <p className="footer__text">Tecnología al servicio de la educación</p>
           </div>
           <div className="footer__section">
             <h3 className="footer__title">Contacto</h3>
-            <p className="footer__text">Email: laboratorio@upla.edu.pe</p>
-            <p className="footer__text">Tel: 999999999</p>
+            <p className="footer__text">Email: oitdes@upla.edu.pe</p>
+            <p className="footer__text">Tel: 965053584</p>
           </div>
           <div className="footer__section">
             <h3 className="footer__title">Horario de Atención</h3>
@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="footer__bottom">
-          <p>&copy; 2025 Laboratorio de Cómputo. Todos los derechos reservados.</p>
+          <p>&copy; 2025 Oficina de Infraestructura Tecnológica y Desarrollo de Software. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

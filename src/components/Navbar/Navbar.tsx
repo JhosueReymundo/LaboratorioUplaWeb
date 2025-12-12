@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__container">
         <Link to="/" className="navbar__logo">
-          Laboratorio de Cómputo
+          OITDES
         </Link>
         
         <div className="navbar__desktop">

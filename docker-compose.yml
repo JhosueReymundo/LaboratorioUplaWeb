@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Servicio de React (frontend)
+  react-app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:3000/api}
+        VITE_BASE_URL: ${VITE_BASE_URL:-http://localhost:3000}
+    ports:
+      - "80:80"
+    volumes:
+      # Para desarrollo: montar código fuente para hot reload
+      # - ./:/app
+      # - /app/node_modules
+      # Para producción: solo usar la imagen construida
+    environment:
+      # Puedes sobreescribir variables aquí si usas runtime
+      - VITE_API_URL=${VITE_API_URL:-http://localhost:3000/api}
+      - VITE_BASE_URL=${VITE_BASE_URL:-http://localhost:3000}
+    networks:
+      - app-network
+
+  # Si tienes backend (opcional)
+  # backend:
+  #   image: tu-backend-image
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - NODE_ENV=production
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    driver: bridge

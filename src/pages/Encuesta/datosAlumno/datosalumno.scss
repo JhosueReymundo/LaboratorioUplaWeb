@@ -1,0 +1,433 @@
+/* .formulario-alumno {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 30px 25px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    label {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #34495e;
+      margin-bottom: -8px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #dcdde1;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      transition: 0.25s ease;
+
+      &:focus {
+        border-color: #3498db;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(52,152,219,0.15);
+      }
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 12px;
+      background: #3498db;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.25s ease;
+      font-weight: 600;
+
+      &:hover {
+        background: #2980b9;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .formulario-alumno {
+    padding: 20px;
+    margin: 20px;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    form {
+      gap: 14px;
+
+      input,
+      select {
+        padding: 10px 12px;
+      }
+
+      button {
+        padding: 11px;
+      }
+    }
+  }
+}
+ */
+
+ // ============================================
+// 📁 datosalumno.scss (DISEÑO MODERNO Y VIBRANTE)
+// ============================================
+
+.formulario-alumno-loading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+  .spinner {
+    color: white;
+    animation: spin 1s linear infinite;
+  }
+
+  p {
+    font-size: 1.125rem;
+    color: white;
+    font-weight: 500;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.formulario-alumno-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formulario-alumno {
+  max-width: 580px;
+  width: 100%;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ========== HEADER ==========
+.formulario-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 3rem 2rem;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  .header-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .formulario-titulo {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .formulario-subtitulo {
+    font-size: 1rem;
+    opacity: 0.95;
+    margin: 0;
+    font-weight: 400;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1) rotate(180deg);
+    opacity: 0.8;
+  }
+}
+
+// ========== CONTENT ==========
+.formulario-content {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2d3748;
+
+    svg {
+      color: #667eea;
+    }
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+    color: #2d3748;
+
+    &:focus {
+      border-color: #667eea;
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      transform: translateY(-2px);
+    }
+
+    &::placeholder {
+      color: #a0aec0;
+    }
+  }
+
+  .select-wrapper {
+    position: relative;
+
+    &::after {
+      content: '▼';
+      position: absolute;
+      right: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #667eea;
+      font-size: 0.75rem;
+    }
+
+    select {
+      appearance: none;
+      cursor: pointer;
+      padding-right: 3rem;
+
+      &:focus {
+        & + &::after {
+          color: #764ba2;
+        }
+      }
+    }
+  }
+}
+
+// ========== BOTÓN ==========
+.btn-continuar {
+  width: 100%;
+  padding: 1.125rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .spinner-small {
+    animation: spin 1s linear infinite;
+  }
+}
+
+// ========== FOOTER ==========
+.formulario-footer {
+  padding: 1.5rem 2rem;
+  background: #f7fafc;
+  border-top: 2px solid #e2e8f0;
+
+  p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    font-size: 0.875rem;
+    color: #718096;
+    line-height: 1.5;
+
+    .icon-info {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+// ========== RESPONSIVE ==========
+@media (max-width: 640px) {
+  .formulario-alumno-wrapper {
+    padding: 1rem;
+  }
+
+  .formulario-alumno {
+    border-radius: 20px;
+  }
+
+  .formulario-header {
+    padding: 2rem 1.5rem;
+
+    .header-icon {
+      width: 64px;
+      height: 64px;
+
+      svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    .formulario-titulo {
+      font-size: 1.75rem;
+    }
+
+    .formulario-subtitulo {
+      font-size: 0.925rem;
+    }
+  }
+
+  .formulario-content {
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    gap: 0.625rem;
+
+    label {
+      font-size: 0.9rem;
+    }
+
+    input,
+    select {
+      padding: 0.875rem 1rem;
+      font-size: 0.95rem;
+    }
+  }
+
+  .btn-continuar {
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  .formulario-footer {
+    padding: 1.25rem 1.5rem;
+
+    p {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+// ========== ANIMACIÓN ADICIONAL ==========
+.form-group {
+  animation: fadeInUp 0.5s ease backwards;
+
+  &:nth-child(1) { animation-delay: 0.1s; }
+  &:nth-child(2) { animation-delay: 0.2s; }
+  &:nth-child(3) { animation-delay: 0.3s; }
+  &:nth-child(4) { animation-delay: 0.4s; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn-continuar {
+  animation: fadeInUp 0.5s ease 0.5s backwards;
+}
