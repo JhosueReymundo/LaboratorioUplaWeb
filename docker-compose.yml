@@ -1,36 +1,15 @@
 version: '3.8'
-
 services:
-  react-app:
-    build: 
+  react-laboratorio:
+    build:
       context: .
       args:
-        VITE_API_URL: ${VITE_API_URL:-http://localhost:3000/api}
-        VITE_BASE_URL: ${VITE_BASE_URL:-http://localhost:3000}
+        VITE_API_URL: ${VITE_API_URL:-http://172.16.106.19:3000/api}
+        VITE_BASE_URL: ${VITE_BASE_URL:-http://172.16.106.19:3000}
+    container_name: weblaboratorio-react
     ports:
-      - "80:80"  # Cambia a "8080:80" si el puerto 80 está ocupado
+      - "3001:80"
+    restart: unless-stopped
     environment:
-      - VITE_API_URL=${VITE_API_URL:-http://localhost:3000/api}
-      - VITE_BASE_URL=${VITE_BASE_URL:-http://localhost:3000}
-    # ========== CONFIGURACIÓN DE REINICIO AUTOMÁTICO ==========
-    restart: unless-stopped  # Se reinicia siempre, a menos que lo detengas manualmente
-    # O usa: restart: always
-    healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80/"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-    # ========================================================
-    networks:
-      - web-network
-    # Opcional: para monitoreo
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
-
-networks:
-  web-network:
-    driver: bridge
+      - VITE_API_URL=${VITE_API_URL:-http://172.16.106.19:3000/api}
+      - VITE_BASE_URL=${VITE_BASE_URL:-http://172.16.106.19:3000}

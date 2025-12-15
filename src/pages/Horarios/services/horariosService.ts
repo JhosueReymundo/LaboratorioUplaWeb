@@ -54,7 +54,7 @@ class HorariosService {
    * Obtener URL del PDF para visualización
    */
   getPdfUrl(archivoPdf: string): string {
-    return `${API_BASE_URL}/uploads/${archivoPdf}`;
+    return `${BASE_URL}/uploads/${archivoPdf}`;
   }
 
   /**

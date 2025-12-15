@@ -65,7 +65,7 @@ class DocumentosService {
    * Obtener URL para descargar el PDF
    */
   getDownloadUrl(documentoId: number): string {
-    return `${BASE_URL}/documentogestion/descargar/${documentoId}`;
+    return `${API_BASE_URL}/documentogestion/descargar/${documentoId}`;
   }
 
   /**
