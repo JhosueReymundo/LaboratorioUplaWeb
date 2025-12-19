@@ -94,7 +94,7 @@ const Productos: React.FC = () => {
         
         {/* Hero Section */}
         <div className="productos__hero">
-          <h1 className="productos__title">Nuestros Productos</h1>
+          <h1 className="productos__title">Nuestros productos</h1>
           <p className="productos__intro">
             Soluciones tecnológicas desarrolladas internamente para optimizar 
             los procesos académicos y administrativos de nuestra universidad.

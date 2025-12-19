@@ -221,7 +221,7 @@ const Documentos: React.FC = () => {
         
         {/* Header */}
         <div className="documentos__header">
-          <h1 className="documentos__title">Documentos de Gestión</h1>
+          <h1 className="documentos__title">Documentos de gestión</h1>
           <p className="documentos__subtitle">
             Accede a los documentos oficiales y normativas de la Oficina de Infraestructura 
             Tecnológica y Desarrollo de Software

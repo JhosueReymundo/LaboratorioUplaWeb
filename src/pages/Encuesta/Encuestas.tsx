@@ -63,7 +63,7 @@ const Encuestas: React.FC = () => {
         {/* Header */}
         <div className="encuestas__header">
           <div>
-            <h1 className="encuestas__title">Encuestas Disponibles</h1>
+            <h1 className="encuestas__title">Encuestas disponibles</h1>
             <p className="encuestas__subtitle">
               Tu opinión es importante. Participa en nuestras encuestas y ayúdanos a mejorar.
             </p>
@@ -121,11 +121,11 @@ const Encuestas: React.FC = () => {
                     {encuesta.estado === 'cerrada' ? (
                       <>
                         <AlertCircle size={20} />
-                        Encuesta Cerrada
+                        Encuesta cerrada
                       </>
                     ) : (
                       <>
-                        Realizar Encuesta
+                        Realizar encuesta
                         <ChevronRight size={20} />
                       </>
                     )}

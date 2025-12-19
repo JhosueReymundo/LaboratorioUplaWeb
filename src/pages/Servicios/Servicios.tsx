@@ -178,7 +178,7 @@ const Servicios: React.FC = () => {
         
         {/* Hero Section */}
         <div className="servicios__hero">
-          <h1 className="servicios__title">Nuestros Servicios</h1>
+          <h1 className="servicios__title">Nuestros servicios</h1>
           <p className="servicios__intro">
             Realizamos una amplia gama de trabajos tecnológicos para garantizar 
             el funcionamiento óptimo de la infraestructura TI universitaria.

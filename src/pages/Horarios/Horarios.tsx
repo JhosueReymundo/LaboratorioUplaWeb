@@ -107,7 +107,7 @@ const Horarios: React.FC = () => {
         {/* Hero Section */}
         <div className="horarios__hero">
           <div className="horarios__hero-content">
-            <h1 className="horarios__title">Horarios de Laboratorios</h1>
+            <h1 className="horarios__title">Horarios de laboratorios</h1>
             <p className="horarios__subtitle">
               Selecciona un laboratorio para ver su horario de atención
             </p>
@@ -149,7 +149,7 @@ const Horarios: React.FC = () => {
                 onClick={handleDescargar}
               >
                 <Download size={20} />
-                Descargar Horario
+                Descargar horario
               </button>
             </div>
 

@@ -146,7 +146,7 @@ const Nosotros: React.FC = () => {
   return (
     <div className="nosotros">
       <div className="nosotros__container">
-        <h1 className="nosotros__title">Sobre Nosotros</h1>
+        <h1 className="nosotros__title">Sobre nosotros</h1>
         <p className="nosotros__intro">
           Conoce más sobre nuestro departamento, misión, visión y el equipo que trabaja 
           día a día para brindarte el mejor soporte tecnológico.
@@ -168,7 +168,7 @@ const Nosotros: React.FC = () => {
 
         {valores.length > 0 && (
           <div className="nosotros__values">
-            <h2 className="nosotros__subtitle">Nuestros Valores</h2>
+            <h2 className="nosotros__subtitle">Nuestros valores</h2>
             <div className="nosotros__values-grid">
               {valores.map((valor) => (
                 <div key={valor.id} className="nosotros__value-card">
@@ -183,7 +183,7 @@ const Nosotros: React.FC = () => {
 
         {equipo.length > 0 && (
           <div className="nosotros__team">
-            <h2 className="nosotros__subtitle">Nuestro Equipo</h2>
+            <h2 className="nosotros__subtitle">Nuestro equipo</h2>
             <p className="nosotros__team-intro">
               Conoce a los profesionales que hacen posible nuestros servicios
             </p>

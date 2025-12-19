@@ -109,7 +109,7 @@ const Comunicados: React.FC = () => {
         {/* Header */}
         <div className="comunicados__header">
           <div className="comunicados__header-content">
-            <h1 className="comunicados__title">Comunicados Oficiales</h1>
+            <h1 className="comunicados__title">Comunicados oficiales</h1>
             <p className="comunicados__subtitle">
               Información importante de la Oficina de Infraestructura Tecnológica y Desarrollo de Software
             </p>

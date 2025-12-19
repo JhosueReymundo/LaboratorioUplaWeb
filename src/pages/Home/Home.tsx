@@ -336,7 +336,7 @@ const HomePage: React.FC = () => {
       {/* Services Section */}
       <section className="home__services">
         <div className="home__services-container">
-          <h2 className="home__services-title">Nuestros Servicios</h2>
+          <h2 className="home__services-title">Nuestros servicios</h2>
           
           {loadingServicios ? (
             <div className="home__loading">
