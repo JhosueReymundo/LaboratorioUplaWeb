@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, Users, Package, CheckCircle2 } from 'lucide-react';
+import {Users, Package, CheckCircle2 } from 'lucide-react';
 /* import { productosService, Producto, EstadoProducto } from '../../services/productosService'; */
 import './Productos.scss';
 import { productosService, type EstadoProducto, type Producto } from './services/productosService';

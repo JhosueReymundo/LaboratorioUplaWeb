@@ -7,8 +7,8 @@ export interface RouteItem {
 
 export const routes: RouteItem[] = [
   /* { path: '/home', label: 'Home', icon: 'Bell' }, */
-  { path: '/nosotros', label: 'Sobre Nosotros', icon: 'Users' },
-  { path: '/documentos', label: 'Documentos de Gestión', icon: 'FileText' },
+  { path: '/nosotros', label: 'Sobre nosotros', icon: 'Users' },
+  { path: '/documentos', label: 'Documentos de gestión', icon: 'FileText' },
   
   { path: '/servicios', label: 'Servicios', icon: 'Wrench' },
   { path: '/horarios', label: 'Horarios', icon: 'Clock' },

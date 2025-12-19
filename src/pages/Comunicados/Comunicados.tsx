@@ -307,7 +307,7 @@ const Comunicados: React.FC = () => {
             {comunicadoSeleccionado.archivosAdjuntos && comunicadoSeleccionado.archivosAdjuntos.length > 0 && (
               <div className="modal-archivos">
                 <h3>Archivos adjuntos</h3>
-                {comunicadoSeleccionado.archivosAdjuntos.map((archivo, index) => (
+                {comunicadoSeleccionado.archivosAdjuntos.map((_, index) => (
                   <a
                     key={index}
                     href={comunicadosService.getDownloadUrl(comunicadoSeleccionado.id, index)}

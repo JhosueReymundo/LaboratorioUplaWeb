@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
             <p className="footer__text">Tel: 965053584</p>
           </div>
           <div className="footer__section">
-            <h3 className="footer__title">Horario de Atención</h3>
+            <h3 className="footer__title">Horario de atención</h3>
             <p className="footer__text">Lunes - Viernes: 7:45 AM - 21:15 PM</p>
            {/*  <p className="footer__text">Sábado: 9:00 AM - 2:00 PM</p> */}
           </div>

@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Download, Calendar, Clock, MapPin, Loader } from 'lucide-react';
+import { Download, Calendar, Loader } from 'lucide-react';
 import { horariosService, type Horario } from './services/horariosService';
 import './Horarios.scss';
 
