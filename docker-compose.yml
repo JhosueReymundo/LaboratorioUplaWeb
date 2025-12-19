@@ -1,15 +1,35 @@
+#version: '3.8'
+#services:
+#  react-laboratorio:
+#    build:
+#      context: .
+#      args:
+#        VITE_API_URL: ${VITE_API_URL:-http://172.16.106.19:3000/api}
+#        VITE_BASE_URL: ${VITE_BASE_URL:-http://172.16.106.19:3000}
+#    container_name: weblaboratorio-react
+#    ports:
+#      - "3001:80"
+#    restart: unless-stopped
+#    environment:
+#      - VITE_API_URL=${VITE_API_URL:-http://172.16.106.19:3000/api}
+#      - VITE_BASE_URL=${VITE_BASE_URL:-http://172.16.106.19:3000}
+
 version: '3.8'
+
 services:
   react-laboratorio:
     build:
       context: .
-      args:
-        VITE_API_URL: ${VITE_API_URL:-http://172.16.106.19:3000/api}
-        VITE_BASE_URL: ${VITE_BASE_URL:-http://172.16.106.19:3000}
+      # SIN args fijos - el nginx se encarga
     container_name: weblaboratorio-react
     ports:
-      - "3001:80"
+      - "3001:80"  # Cambia según necesites
     restart: unless-stopped
-    environment:
-      - VITE_API_URL=${VITE_API_URL:-http://172.16.106.19:3000/api}
-      - VITE_BASE_URL=${VITE_BASE_URL:-http://172.16.106.19:3000}
+    # SIN environment variables para API (ahora es dinámico)
+    # Opcional: healthcheck
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
