@@ -1,8 +1,10 @@
+import { getApiConfig} from '../../../config/api';
+
 import axios from 'axios';
 
 /* const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/nosotros'; */
 /* const API_BASE_URL ='http://localhost:3000/api/nosotros'; */
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+//const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 /* const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000'; */
 
 export interface Equipo {
@@ -44,10 +46,14 @@ export interface Valor {
 }
 
 class NosotrosService {
+
+  private get apiUrl(): string {
+    return getApiConfig().apiUrl;
+  }
   // Obtener la misión activa
   async getMisionActiva(): Promise<Mision | null> {
     try {
-      const response = await axios.get<Mision>(`${API_BASE_URL}/nosotros/mision/active`);
+      const response = await axios.get<Mision>(`${this.apiUrl}/nosotros/mision/active`);
       return response.data;
     } catch (error) {
       console.error('Error al obtener misión activa:', error);
@@ -58,7 +64,7 @@ class NosotrosService {
   // Obtener la visión activa
   async getVisionActiva(): Promise<Vision | null> {
     try {
-      const response = await axios.get<Vision>(`${API_BASE_URL}/nosotros/vision/active`);
+      const response = await axios.get<Vision>(`${this.apiUrl}/nosotros/vision/active`);
       return response.data;
     } catch (error) {
       console.error('Error al obtener visión activa:', error);
@@ -69,7 +75,7 @@ class NosotrosService {
   // Obtener todos los valores visibles
   async getValoresVisibles(): Promise<Valor[]> {
     try {
-      const response = await axios.get<Valor[]>(`${API_BASE_URL}/nosotros/valores`);
+      const response = await axios.get<Valor[]>(`${this.apiUrl}/nosotros/valores`);
       return response.data
         .filter(valor => valor.isVisible)
         .sort((a, b) => a.orden - b.orden);
@@ -82,7 +88,7 @@ class NosotrosService {
   // Obtener todos los miembros del equipo visibles
   async getEquipoVisible(): Promise<Equipo[]> {
     try {
-      const response = await axios.get<Equipo[]>(`${API_BASE_URL}/nosotros/equipo`);
+      const response = await axios.get<Equipo[]>(`${this.apiUrl}/nosotros/equipo`);
       return response.data
         .filter(miembro => miembro.esVisible)
         .sort((a, b) => a.orden - b.orden);

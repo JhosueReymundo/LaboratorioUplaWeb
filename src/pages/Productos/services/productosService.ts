@@ -1,5 +1,7 @@
 // services/productosService.ts
 
+import { getApiConfig} from '../../../config/api';
+
 export type EstadoProducto = 'Activo' | 'En Desarrollo' | 'En Mantenimiento' | 'Descontinuado';
 
 export interface ProductoCaracteristica {
@@ -24,16 +26,23 @@ export interface Producto {
 }
 
 /* const API_URL = 'http://localhost:3000/api'; */
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+//const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 //const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
 class ProductosService {
+
+  private get apiUrl(): string {
+    return getApiConfig().apiUrl;
+  }
+
+
+
   /**
    * Obtener todos los productos visibles (para público)
    */
   async getProductosPublicos(): Promise<Producto[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/productos`);
+      const response = await fetch(`${this.apiUrl}/productos`);
       if (!response.ok) throw new Error('Error al obtener productos');
       
       const data = await response.json();
@@ -53,7 +62,7 @@ class ProductosService {
    */
   async getProductoById(id: number): Promise<Producto> {
     try {
-      const response = await fetch(`${API_BASE_URL}/productos/${id}`);
+      const response = await fetch(`${this.apiUrl}/productos/${id}`);
       if (!response.ok) throw new Error('Producto no encontrado');
       
       return await response.json();

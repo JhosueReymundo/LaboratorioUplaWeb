@@ -1,3 +1,6 @@
+import { getApiConfig} from '../../../config/api';
+
+
 export interface ServicioDetalle {
   id: number;
   detalle: string;
@@ -17,17 +20,21 @@ export interface Servicio {
 }
 
 /* const API_URL = 'http://localhost:3000/api'; */
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+//const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 //const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
 
 class ServiciosService {
+
+  private get apiUrl(): string {
+    return getApiConfig().apiUrl;
+  }
   /**
    * Obtener todos los servicios visibles (para público)
    */
   async getServiciosPublicos(): Promise<Servicio[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/servicios`);
+      const response = await fetch(`${this.apiUrl}/servicios`);
       if (!response.ok) throw new Error('Error al obtener servicios');
       
       const data = await response.json();
@@ -46,7 +53,7 @@ class ServiciosService {
    */
   async getServicioById(id: number): Promise<Servicio> {
     try {
-      const response = await fetch(`${API_BASE_URL}/servicios/${id}`);
+      const response = await fetch(`${this.apiUrl}/servicios/${id}`);
       if (!response.ok) throw new Error('Servicio no encontrado');
       
       return await response.json();
@@ -61,7 +68,7 @@ class ServiciosService {
    */
   async getDetallesByServicio(servicioId: number): Promise<ServicioDetalle[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/servicios/${servicioId}/detalles`);
+      const response = await fetch(`${this.apiUrl}/servicios/${servicioId}/detalles`);
       if (!response.ok) throw new Error('Error al obtener detalles');
       
       return await response.json();

@@ -1,7 +1,7 @@
-
+import { getApiConfig} from '../../../config/api';
 
 /* const API_BASE_URL = 'http://localhost:3000/api'; */
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+//const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 //const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
 // ========== INTERFACES ==========
@@ -55,11 +55,16 @@ export interface CreateRespuestaDetalleDto {
 }
 
 class EncuestasService {
+
+
+  private get apiUrl(): string {
+    return getApiConfig().apiUrl;
+  }
   
   // ========== ENCUESTAS ==========
   async getEncuestasPublicas(): Promise<Encuesta[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/encuestas/publicas`);
+      const response = await fetch(`${this.apiUrl}/encuestas/publicas`);
       if (!response.ok) throw new Error('Error al cargar encuestas');
       return await response.json();
     } catch (error) {
@@ -70,7 +75,7 @@ class EncuestasService {
 
   async getEncuestaById(id: number): Promise<Encuesta> {
     try {
-      const response = await fetch(`${API_BASE_URL}/encuestas/${id}`);
+      const response = await fetch(`${this.apiUrl}/encuestas/${id}`);
       if (!response.ok) throw new Error('Error al cargar encuesta');
       return await response.json();
     } catch (error) {
@@ -82,7 +87,7 @@ class EncuestasService {
   // ========== PREGUNTAS ==========
   async getPreguntasByEncuesta(encuestaId: number): Promise<Pregunta[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/encuestas/${encuestaId}/preguntas`);
+      const response = await fetch(`${this.apiUrl}/encuestas/${encuestaId}/preguntas`);
       if (!response.ok) throw new Error('Error al cargar preguntas');
       return await response.json();
     } catch (error) {
@@ -94,7 +99,7 @@ class EncuestasService {
   // ========== ESCUELAS ==========
   async getEscuelas(): Promise<Escuela[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/escuela`);
+      const response = await fetch(`${this.apiUrl}/escuela`);
       if (!response.ok) throw new Error('Error al cargar escuelas');
       return await response.json();
     } catch (error) {
@@ -122,7 +127,7 @@ class EncuestasService {
   } */
 async crearRespuesta(data: CreateRespuestaDto): Promise<{ id: number }> {
   try {
-    const response = await fetch(`${API_BASE_URL}/encuestas/respuestas`, {
+    const response = await fetch(`${this.apiUrl}/encuestas/respuestas`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -146,7 +151,7 @@ async crearRespuesta(data: CreateRespuestaDto): Promise<{ id: number }> {
 
   async crearRespuestaDetalle(data: CreateRespuestaDetalleDto): Promise<void> {
     try {
-      const response = await fetch(`${API_BASE_URL}/encuestas/respuestas/detalles`, {
+      const response = await fetch(`${this.apiUrl}/encuestas/respuestas/detalles`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

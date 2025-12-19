@@ -1,5 +1,7 @@
 // services/documentosService.ts
 
+import { getApiConfig, getFileUrl } from '../../../config/api';
+
 export interface DocumentoGestion {
   id: number;
   nombreDoc: string;
@@ -14,17 +16,22 @@ export interface DocumentoGestion {
 /* const API_URL = 'http://localhost:3000/api';
 const FILES_URL = 'http://localhost:3000'; */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
-const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
+//const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+//const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
 
 class DocumentosService {
   /**
    * Obtener todos los documentos activos (para público)
    */
+
+  private get apiUrl(): string {
+    return getApiConfig().apiUrl;
+  }
+  
   async getDocumentosActivos(): Promise<DocumentoGestion[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/documentogestion`);
+      const response = await fetch(`${this.apiUrl}/documentogestion`);
       if (!response.ok) throw new Error('Error al obtener documentos');
       
       const data = await response.json();
@@ -44,7 +51,7 @@ class DocumentosService {
    */
   async getDocumentoById(id: number): Promise<DocumentoGestion> {
     try {
-      const response = await fetch(`${API_BASE_URL}/documentogestion/${id}`);
+      const response = await fetch(`${this.apiUrl}/documentogestion/${id}`);
       if (!response.ok) throw new Error('Documento no encontrado');
       
       return await response.json();
@@ -58,14 +65,15 @@ class DocumentosService {
    * Obtener URL del PDF para visualización
    */
   getPdfUrl(archivoPdf: string): string {
-    return `${BASE_URL}/uploads/${archivoPdf}`;
+    //return `${BASE_URL}/uploads/${archivoPdf}`;
+    return getFileUrl(archivoPdf);
   }
 
   /**
    * Obtener URL para descargar el PDF
    */
   getDownloadUrl(documentoId: number): string {
-    return `${API_BASE_URL}/documentogestion/descargar/${documentoId}`;
+    return `${this.apiUrl}/documentogestion/descargar/${documentoId}`;
   }
 
   /**

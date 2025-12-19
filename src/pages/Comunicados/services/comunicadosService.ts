@@ -1,6 +1,7 @@
 // ============================================
 // 📁 services/comunicadosService.ts
 // ============================================
+import { getApiConfig, getFileUrl } from '../../../config/api';
 
 export interface Autor {
   id: number;
@@ -34,15 +35,19 @@ export interface Comunicado {
 }
 
 //const API_BASE_URL = 'http://localhost:3000/api';
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
-const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
+//const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+//const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
 class ComunicadosService {
+
+  private get apiUrl(): string {
+    return getApiConfig().apiUrl;
+  }
   
   // ========== OBTENER COMUNICADOS PUBLICADOS (PÚBLICO) ==========
   async getPublicados(): Promise<Comunicado[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/comunicados/publicados`);
+      const response = await fetch(`${this.apiUrl}/comunicados/publicados`);
       if (!response.ok) throw new Error('Error al cargar comunicados');
       return await response.json();
     } catch (error) {
@@ -54,7 +59,7 @@ class ComunicadosService {
   // ========== OBTENER UN COMUNICADO ==========
   async getById(id: number): Promise<Comunicado> {
     try {
-      const response = await fetch(`${API_BASE_URL}/comunicados/${id}`);
+      const response = await fetch(`${this.apiUrl}/comunicados/${id}`);
       if (!response.ok) throw new Error('Error al cargar comunicado');
       return await response.json();
     } catch (error) {
@@ -66,7 +71,7 @@ class ComunicadosService {
   // ========== INCREMENTAR VISTAS ==========
   async incrementarVistas(id: number): Promise<void> {
     try {
-      await fetch(`${API_BASE_URL}/comunicados/${id}/vistas`, {
+      await fetch(`${this.apiUrl}/comunicados/${id}/vistas`, {
         method: 'PATCH',
       });
     } catch (error) {
@@ -77,17 +82,19 @@ class ComunicadosService {
   // ========== OBTENER URL DE IMAGEN ==========
   getImagenUrl(imagenPortada: string | null): string | null {
     if (!imagenPortada) return null;
-    return `${BASE_URL}/uploads/${imagenPortada}`;
+    //return `${BASE_URL}/uploads/${imagenPortada}`;
+    return getFileUrl(imagenPortada);
   }
 
   // ========== OBTENER URL DE ARCHIVO ADJUNTO ==========
   getArchivoUrl(archivo: string): string {
-    return `${BASE_URL}/uploads/${archivo}`;
+    //return `${BASE_URL}/uploads/${archivo}`;
+    return getFileUrl(archivo);
   }
 
   // ========== DESCARGAR ARCHIVO ==========
   getDownloadUrl(comunicadoId: number, archivoIndex: number): string {
-    return `${API_BASE_URL}/comunicados/${comunicadoId}/descargar-archivo/${archivoIndex}`;
+    return `${this.apiUrl}/comunicados/${comunicadoId}/descargar-archivo/${archivoIndex}`;
   }
 }
 
