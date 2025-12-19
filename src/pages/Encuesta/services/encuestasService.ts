@@ -2,7 +2,7 @@
 
 /* const API_BASE_URL = 'http://localhost:3000/api'; */
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
-const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
+//const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000';
 
 // ========== INTERFACES ==========
 export interface Escuela {
@@ -160,7 +160,7 @@ async crearRespuesta(data: CreateRespuestaDto): Promise<{ id: number }> {
     }
   }
 
-  async enviarRespuestasCompletas(respuestaId: number, detalles: CreateRespuestaDetalleDto[]): Promise<void> {
+  async enviarRespuestasCompletas(_: number, detalles: CreateRespuestaDetalleDto[]): Promise<void> {
     try {
       // Enviar todas las respuestas
       for (const detalle of detalles) {

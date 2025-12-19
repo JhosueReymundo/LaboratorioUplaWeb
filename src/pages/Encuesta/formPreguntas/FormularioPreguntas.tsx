@@ -110,7 +110,7 @@ const FormularioPreguntas: React.FC = () => {
   const [respuestas, setRespuestas] = useState<Record<number, any>>({});
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  //const [currentQuestion, setCurrentQuestion] = useState(0);
 
   useEffect(() => {
     cargarPreguntas();
