@@ -42,6 +42,33 @@ const Comunicados: React.FC = () => {
     };
   };
 
+
+  const getAutorInstitucion = (autor: Comunicado['autor']) => {
+    if (autor.escuela) {
+      return {
+        tipo: 'escuela',
+        nombre: autor.escuela.nombreEscuela,
+      };
+    }
+
+    if (autor.oficina) {
+      return {
+        tipo: 'oficina',
+        nombre: autor.oficina,
+      };
+    }
+
+    if (autor.dependencia) {
+      return {
+        tipo: 'dependencia',
+        nombre: autor.dependencia.nombreDependencia,
+      };
+    }
+
+    return null;
+  };
+
+
   const filtros = getFiltros();
 
   // Filtrar comunicados
@@ -212,7 +239,7 @@ const Comunicados: React.FC = () => {
                     <span className="autor-nombre">
                       {comunicado.autor.nombre} {comunicado.autor.apellido}
                     </span>
-                    <div className="autor-detalles">
+                    {/* <div className="autor-detalles">
                       {comunicado.autor.escuela && (
                         <span className="detalle">
                           <GraduationCap size={12} />
@@ -225,7 +252,23 @@ const Comunicados: React.FC = () => {
                           {comunicado.autor.dependencia.nombreDependencia}
                         </span>
                       )}
+                    </div> */}
+                    <div className="autor-detalles">
+                      {(() => {
+                        const institucion = getAutorInstitucion(comunicado.autor);
+                        if (!institucion) return null;
+
+                        return (
+                          <span className="detalle">
+                            {institucion.tipo === 'escuela' && <GraduationCap size={12} />}
+                            {institucion.tipo === 'oficina' && <Building2 size={12} />}
+                            {institucion.tipo === 'dependencia' && <Building2 size={12} />}
+                            {institucion.nombre}
+                          </span>
+                        );
+                      })()}
                     </div>
+
                   </div>
                 </div>
 
