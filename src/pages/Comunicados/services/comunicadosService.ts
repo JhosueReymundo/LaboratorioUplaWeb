@@ -7,7 +7,7 @@ export interface Autor {
   id: number;
   nombre: string;
   apellido: string;
-  oficina: string;
+  oficina?: string;
   escuela?: {
     id: number;
     nombreEscuela: string;

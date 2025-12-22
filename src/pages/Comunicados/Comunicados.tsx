@@ -30,15 +30,18 @@ const Comunicados: React.FC = () => {
   const getFiltros = () => {
     const escuelas = new Set<string>();
     const dependencias = new Set<string>();
+    const oficinas = new Set<string>();
 
     comunicados.forEach(com => {
       if (com.autor.escuela) escuelas.add(com.autor.escuela.nombreEscuela);
       if (com.autor.dependencia) dependencias.add(com.autor.dependencia.nombreDependencia);
+      if (com.autor.oficina) oficinas.add(com.autor.oficina);
     });
 
     return {
       escuelas: Array.from(escuelas),
       dependencias: Array.from(dependencias),
+      oficinas: Array.from(oficinas),
     };
   };
 
@@ -77,8 +80,9 @@ const Comunicados: React.FC = () => {
     
     const esEscuela = com.autor.escuela?.nombreEscuela === filtroActivo;
     const esDependencia = com.autor.dependencia?.nombreDependencia === filtroActivo;
+    const esOficina= com.autor.oficina === filtroActivo;
     
-    return esEscuela || esDependencia;
+    return esEscuela || esDependencia || esOficina;
   });
 
   const handleVerMas = async (comunicado: Comunicado) => {

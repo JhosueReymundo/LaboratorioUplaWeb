@@ -214,6 +214,12 @@ const HomePage: React.FC = () => {
                         {ultimoComunicado.autor.escuela.nombreEscuela}
                       </span>
                     )}
+                    {ultimoComunicado.autor.oficina && (
+                      <span className="detalle">
+                        <GraduationCap size={14} />
+                        {ultimoComunicado.autor.oficina}
+                      </span>
+                    )}
                     {ultimoComunicado.autor.dependencia && (
                       <span className="detalle">
                         <Building2 size={14} />
