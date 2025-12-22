@@ -154,14 +154,14 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="home__stats">
+    {/*   <section className="home__stats">
         <div className="home__stats-container">
           <div className="home__stat">
             <div className="home__stat-number">9</div>
             <div className="home__stat-label">Laboratorios</div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Ventana Flotante de Notificación */}
       {mostrarNotificacion && ultimoComunicado && (

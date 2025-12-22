@@ -136,21 +136,20 @@ export const logApiConfig = () => {
 /**
  * Función para obtener URL de archivos (PDFs, etc.)
  */
-export const getFileUrl = (filePath:string):string  => {
+/* export const getFileUrl = (filePath:string):string  => {
   const config = getApiConfig();
-  
   if (!filePath) return '';
-  
-  // Si el filePath ya es una URL completa
   if (filePath.startsWith('http')) return filePath;
-  
-  // Si tiene ruta relativa
-  //const filename = filePath.includes('/') ? filePath.split('/').pop() : filePath;
-  
-  // Para archivos uploads
   if (filePath.includes('uploads/') || filePath.includes('horarios/')) {
     return `${config.baseUrl}/uploads/${filePath}`;
   }
-  
   return `${config.baseUrl}/${filePath}`;
+}; */
+
+export const getFileUrl = (archivoPdf: string): string => {
+  if (!archivoPdf) return '';
+
+  if (archivoPdf.startsWith('http')) return archivoPdf;
+
+  return `${getApiConfig().baseUrl}/uploads/${archivoPdf}`;
 };

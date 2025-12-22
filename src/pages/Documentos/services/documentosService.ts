@@ -66,7 +66,7 @@ class DocumentosService {
    */
   getPdfUrl(archivoPdf: string): string {
     //return `${BASE_URL}/uploads/${archivoPdf}`;
-    return getFileUrl(archivoPdf);
+    return getFileUrl(archivoPdf);   
   }
 
   /**
