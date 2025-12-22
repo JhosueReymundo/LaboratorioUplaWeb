@@ -186,6 +186,25 @@ const Comunicados: React.FC = () => {
               </div>
             )}
 
+
+            {filtros.oficinas.length > 0 && (
+              <div className="filter-group">
+                <span className="filter-group-label">Oficinas:</span>
+                {filtros.oficinas.map(of => (
+                  <button
+                    key={of}
+                    onClick={() => setFiltroActivo(of)}
+                    className={`filter-btn ${filtroActivo === of ? 'filter-btn--active' : ''}`}
+                  >
+                    <Building2 size={16} />
+                    {of}
+                  </button>
+                ))}
+              </div>
+            )}
+
+
+
             {filtros.dependencias.length > 0 && (
               <div className="filter-group">
                 <span className="filter-group-label">Dependencias:</span>
