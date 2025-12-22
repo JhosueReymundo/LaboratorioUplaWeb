@@ -1,94 +1,6 @@
-/* import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { encuestasService, type CreateRespuestaDetalleDto, type Pregunta } from "../services/encuestasService";
-import "./FormularioPreguntas.scss";
-
-const FormularioPreguntas: React.FC = () => {
-  const { encuestaId } = useParams();
-  const [searchParams] = useSearchParams();
-  const respuestaId = Number(searchParams.get("respuestaId"));
-
-  const [preguntas, setPreguntas] = useState<Pregunta[]>([]);
-  const [respuestas, setRespuestas] = useState<Record<number, any>>({});
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    cargarPreguntas();
-  }, []);
-
-  const cargarPreguntas = async () => {
-    const data = await encuestasService.getPreguntasByEncuesta(Number(encuestaId));
-    setPreguntas(data);
-  };
-
-  const handleChange = (preguntaId: number, valor: any) => {
-    setRespuestas({ ...respuestas, [preguntaId]: valor });
-  };
-
-  const handleSubmit = async () => {
-    const detalles: CreateRespuestaDetalleDto[] = preguntas.map(p => {
-      const val = respuestas[p.id];
-
-      const detalle: CreateRespuestaDetalleDto = {
-        respuesta_id: respuestaId,
-        pregunta_id: p.id,
-      };
-
-      if (p.tipo === "abierta") detalle.texto = val;
-      if (p.tipo === "opcion") detalle.opcion_id = Number(val);
-      if (p.tipo === "numerica") detalle.valor_numerico = Number(val);
-
-      return detalle;
-    });
-
-    await encuestasService.enviarRespuestasCompletas(respuestaId, detalles);
-
-    alert("¡Encuesta enviada!");
-    navigate("/encuestas");
-  };
-
-  return (
-    <div className="formulario-preguntas">
-      <h2>Responder Encuesta</h2>
-
-      {preguntas.map((pregunta) => (
-        <div key={pregunta.id} className="pregunta-card">
-          <label>{pregunta.texto}</label>
-
-          {pregunta.tipo === "abierta" && (
-            <textarea
-              onChange={e => handleChange(pregunta.id, e.target.value)}
-            />
-          )}
-
-          {pregunta.tipo === "opcion" && (
-            <select onChange={e => handleChange(pregunta.id, e.target.value)}>
-              <option value="">Seleccionar...</option>
-              {pregunta.opciones.map(o => (
-                <option key={o.id} value={o.id}>{o.texto}</option>
-              ))}
-            </select>
-          )}
-
-          {pregunta.tipo === "numerica" && (
-            <input
-              type="number"
-              onChange={e => handleChange(pregunta.id, e.target.value)}
-            />
-          )}
-        </div>
-      ))}
-
-      <button onClick={handleSubmit}>Enviar encuesta</button>
-    </div>
-  );
-};
-
-export default FormularioPreguntas;
- */
-
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import ModalMensaje from "../../../components/ModalMensaje/ModalMensaje";
 import { 
   CheckCircle, MessageSquare, ListChecks, Hash, 
   ArrowRight, Loader, AlertCircle 
@@ -110,6 +22,10 @@ const FormularioPreguntas: React.FC = () => {
   const [respuestas, setRespuestas] = useState<Record<number, any>>({});
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  const [mostrarModal, setMostrarModal] = useState(false);
+  const [modalTipo, setModalTipo] = useState<"success" | "error">("success");
+  const [modalMensaje, setModalMensaje] = useState("");
+
   //const [currentQuestion, setCurrentQuestion] = useState(0);
 
   useEffect(() => {
@@ -133,12 +49,20 @@ const FormularioPreguntas: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    // Validar que todas las preguntas estén respondidas
     const sinResponder = preguntas.filter(p => !respuestas[p.id]);
-    if (sinResponder.length > 0) {
+    /* if (sinResponder.length > 0) {
       alert(`Por favor responde todas las preguntas. Faltan ${sinResponder.length} pregunta(s).`);
       return;
+    } */
+   if (sinResponder.length > 0) {
+      setModalTipo("error");
+      setModalMensaje(
+        `Por favor responde todas las preguntas. Faltan ${sinResponder.length} pregunta(s).`
+      );
+      setMostrarModal(true);
+      return;
     }
+
 
     setSubmitting(true);
 
@@ -160,11 +84,19 @@ const FormularioPreguntas: React.FC = () => {
 
       await encuestasService.enviarRespuestasCompletas(respuestaId, detalles);
 
-      alert("¡Encuesta enviada exitosamente! Gracias por tu participación.");
-      navigate("/encuestas");
+      setSubmitting(false);
+      /* alert("¡Encuesta enviada exitosamente! Gracias por tu participación.");
+      navigate("/encuestas"); */
+      setModalTipo("success");
+      setModalMensaje("¡Encuesta enviada exitosamente! Gracias por tu participación.");
+      setMostrarModal(true);
     } catch (error) {
-      console.error('Error al enviar:', error);
+      /* console.error('Error al enviar:', error);
       alert('Error al enviar la encuesta. Intenta nuevamente.');
+      setSubmitting(false); */
+      setModalTipo("error");
+      setModalMensaje("Ocurrió un error al enviar la encuesta. Intenta nuevamente.");
+      setMostrarModal(true);
       setSubmitting(false);
     }
   };
@@ -210,6 +142,7 @@ const FormularioPreguntas: React.FC = () => {
   }
 
   return (
+    <>
     <div className="formulario-preguntas-wrapper">
       <div className="formulario-preguntas">
         {/* Header */}
@@ -344,7 +277,21 @@ const FormularioPreguntas: React.FC = () => {
           </button>
         </div>
       </div>
-    </div>
+    </div>   
+
+    <ModalMensaje
+      abierto={mostrarModal}
+      tipo={modalTipo}
+      titulo={modalTipo === "success" ? "Encuesta enviada" : "Error"}
+      mensaje={modalMensaje}
+      onCerrar={() => {
+        setMostrarModal(false);
+        if (modalTipo === "success") {
+          navigate("/encuestas");
+        }
+      }}
+    />
+  </> 
   );
 };
 

@@ -108,23 +108,7 @@ class EncuestasService {
     }
   }
 
-  // ========== RESPUESTAS ==========
-/*   async crearRespuesta(data: CreateRespuestaDto): Promise<{ id: number }> {
-    try {
-      const response = await fetch(`${API_BASE_URL}/encuestas/respuestas`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) throw new Error('Error al crear respuesta');
-      return await response.json();
-    } catch (error) {
-      console.error('Error:', error);
-      throw error;
-    }
-  } */
+ 
 async crearRespuesta(data: CreateRespuestaDto): Promise<{ id: number }> {
   try {
     const response = await fetch(`${this.apiUrl}/encuestas/respuestas`, {
@@ -142,7 +126,7 @@ async crearRespuesta(data: CreateRespuestaDto): Promise<{ id: number }> {
     }
     
     const respuesta = await response.json();
-    return { id: respuesta.id }; // Tu backend devuelve la respuesta completa, pero necesitas solo el ID
+    return { id: respuesta.id };
   } catch (error) {
     console.error('Error:', error);
     throw error;
