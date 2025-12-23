@@ -18,6 +18,7 @@ export interface Producto {
   version: string;
   usuarios: string;
   icono: string;
+  enlace?: string;
   orden: number;
   esVisible: boolean;
   caracteristicas: ProductoCaracteristica[];

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Users, Package, CheckCircle2 } from 'lucide-react';
+import {Users, Package, CheckCircle2, Link} from 'lucide-react';
 /* import { productosService, Producto, EstadoProducto } from '../../services/productosService'; */
 import './Productos.scss';
 import { productosService, type EstadoProducto, type Producto } from './services/productosService';
@@ -135,6 +135,31 @@ const Productos: React.FC = () => {
                   </div>
                 )}
 
+               {/*  {producto.enlace && (
+                  <a
+                    className="productos__enlace"
+                    href={producto.enlace}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    🔗
+                    <span>{producto.enlace}</span>
+                  </a>
+                )} */}
+               {producto.enlace && (
+                  <a
+                    className="productos__enlace"
+                    href={producto.enlace}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Link size={16} />
+                    <span>{producto.enlace}</span>
+                  </a>
+                )} 
+
+
+
                 {/* Características */}
                 {producto.caracteristicas && producto.caracteristicas.length > 0 && (
                   <div className="productos__features">
@@ -154,13 +179,6 @@ const Productos: React.FC = () => {
                   </div>
                 )}
               </div>
-
-              {/* <div className="productos__footer">
-                <button className="productos__cta-btn">
-                  Ver más detalles
-                  <ChevronRight size={20} />
-                </button>
-              </div> */}
             </div>
           ))}
         </div>
